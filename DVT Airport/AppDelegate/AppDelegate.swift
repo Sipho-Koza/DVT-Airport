@@ -17,9 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let airportsVC = AirportsViewController()
+        self.setupInitialViewController(vc: airportsVC)
+        
         return true
     }
 
+    //I created this method with an input so in future,if i want to set up some default data on the initial screan before I present it and use the instance of the controller
+    private func setupInitialViewController (vc: UIViewController) {
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        guard let window = self.window else {
+            fatalError("Window not found, sorry.")
+        }
+        
+        window.rootViewController = UINavigationController.init(rootViewController: vc)
+        window.makeKeyAndVisible()
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
