@@ -15,6 +15,10 @@ extension UIColor {
         return UIColor(displayP3Red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0)
     }
     
+    public class var appDarkBlueColor: UIColor {
+        return UIColor(displayP3Red: 22.0/255, green: 58.0/255, blue: 134.0/255, alpha: 1.0)
+    }
+    
     public class var appDarkGrayColor: UIColor {
         return UIColor.darkGray
     }

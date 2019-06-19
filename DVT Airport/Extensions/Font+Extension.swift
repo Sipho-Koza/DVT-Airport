@@ -17,7 +17,7 @@ extension UIFont {
     
     //appCellFlightNameFont
     public class var appCellFlightNameFont: UIFont {
-        return UIFont.systemFont(ofSize: 14, weight: .semibold)
+        return UIFont.systemFont(ofSize: 13, weight: .semibold)
     }
     
     

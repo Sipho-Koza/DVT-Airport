@@ -19,6 +19,8 @@
 		8E02386722B947B400125A2B /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02386622B947B400125A2B /* Number+Extension.swift */; };
 		8E02386922B9713600125A2B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02386822B9713600125A2B /* Color+Extension.swift */; };
 		8E02386B22B9715200125A2B /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02386A22B9715200125A2B /* Font+Extension.swift */; };
+		8E98562522BA2482001219A4 /* ScheduleCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98562422BA2482001219A4 /* ScheduleCellModel.swift */; };
+		8E98562822BA2526001219A4 /* ScheduleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98562722BA2526001219A4 /* ScheduleDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		8E02386622B947B400125A2B /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
 		8E02386822B9713600125A2B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		8E02386A22B9715200125A2B /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		8E98562422BA2482001219A4 /* ScheduleCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellModel.swift; sourceTree = "<group>"; };
+		8E98562722BA2526001219A4 /* ScheduleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		8E02383522B917A900125A2B /* DVT Airport */ = {
 			isa = PBXGroup;
 			children = (
+				8E98562622BA2515001219A4 /* Models */,
 				8E02386322B9368500125A2B /* CustomCells */,
 				8E02386022B92DA500125A2B /* Extensions */,
 				8E02385A22B918EC00125A2B /* AppSettingsFiles */,
@@ -150,8 +155,17 @@
 			isa = PBXGroup;
 			children = (
 				8E02386422B936A200125A2B /* ScheduleCell.swift */,
+				8E98562422BA2482001219A4 /* ScheduleCellModel.swift */,
 			);
 			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		8E98562622BA2515001219A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E98562722BA2526001219A4 /* ScheduleDataModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E98562522BA2482001219A4 /* ScheduleCellModel.swift in Sources */,
+				8E98562822BA2526001219A4 /* ScheduleDataModel.swift in Sources */,
 				8E02383F22B917A900125A2B /* DVT_Airport.xcdatamodeld in Sources */,
 				8E02385D22B919BB00125A2B /* AirportsViewController.swift in Sources */,
 				8E02383722B917A900125A2B /* AppDelegate.swift in Sources */,

@@ -17,17 +17,24 @@ class ScheduleCellModel: NSObject {
     var avatar: UIImage?
     var flightName: String?
     var flightDestination: String?
-    var number: String?
+    var flightNumber: String?
+    var hasTitleImage: Bool?
     
-    init(departureTime: String, departureStatusImage: UIImage, departureStatus: String, avatar: UIImage ,flightName: String, flightDestination: String, number: String) {
-        
+//    init (object: AnyObject) {
+//
+//    }
+    
+    
+    init(departureTime: String, departureStatusImage: UIImage, departureStatus: String, avatar: UIImage ,flightName: String, flightDestination: String, flightNumber: String, hasTitleImage: Bool) {
+
         self.departureTime = departureTime
         self.departureStatusImage = departureStatusImage
         self.departureStatus = departureStatus
         self.avatar = avatar
         self.flightName = flightName
         self.flightDestination = flightDestination
-        self.number = number
+        self.flightNumber = flightNumber
+        self.hasTitleImage = hasTitleImage
     }
 }
 
@@ -48,6 +55,13 @@ class ScheduleCell: UITableViewCell {
     var flightDestinationLabel: UILabel!
     var numberLabel: UILabel!
     
+    
+    var deptTimeheaderLabel: UILabel!
+    var flightNumberHeaderLabel: UILabel!
+    var destinationHeaderLabel: UILabel!
+    
+    var hasTitleImg: Bool!
+    
     var scheduleCell: ScheduleCellModel? {
         didSet {
             if let schdeule_cell = scheduleCell {
@@ -60,7 +74,8 @@ class ScheduleCell: UITableViewCell {
                 avatarImageView.image = schdeule_cell.avatar
                 flightNameLabel.text = schdeule_cell.flightName
                 flightDestinationLabel.text = schdeule_cell.flightDestination
-                numberLabel.text = schdeule_cell.number
+                numberLabel.text = schdeule_cell.flightNumber
+                hasTitleImg = schdeule_cell.hasTitleImage
                 
                 setNeedsLayout()
             }
@@ -71,15 +86,12 @@ class ScheduleCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
-//        self.
         
         //background
         backgroundColor = UIColor.groupTableViewBackground
         
         backgoundView = UIView(frame: .zero)
         backgoundView.alpha = 0.6
-        backgoundView.layer.cornerRadius = CGFloat().cellCornerRadius
-        contentView.addSubview(backgoundView)
         
         //seperatorLine
         seperatorLine = UIView(frame: .zero)
@@ -89,7 +101,7 @@ class ScheduleCell: UITableViewCell {
         //departureTimeLabel
         departureTimeLabel = UILabel(frame: .zero)
         departureTimeLabel.textAlignment = .left
-        departureTimeLabel.textColor = UIColor.appBlueColor
+        departureTimeLabel.textColor = UIColor.appDarkBlueColor
         departureTimeLabel.font = UIFont.appCellTimeAndStatusFont
         contentView.addSubview(departureTimeLabel)
         
@@ -104,7 +116,6 @@ class ScheduleCell: UITableViewCell {
         departureStatusLabel.textAlignment = .right
         departureStatusLabel.textColor = UIColor.appDarkGrayColor
         departureStatusLabel.font = UIFont.appCellTimeAndStatusFont
-//        departureStatusLabel.backgroundColor = UIColor.blue
         contentView.addSubview(departureStatusLabel)
         
         //avatarImageView
@@ -116,23 +127,60 @@ class ScheduleCell: UITableViewCell {
         //airportNameLabel
         flightNameLabel = UILabel(frame: .zero)
         flightNameLabel.textAlignment = .left
-        flightNameLabel.textColor = UIColor.appDarkGrayColor
+        flightNameLabel.textColor = UIColor.appDarkBlueColor
         flightNameLabel.font = UIFont.appCellFlightNameFont
         contentView.addSubview(flightNameLabel)
         
         //flightDestinationLabel
         flightDestinationLabel = UILabel(frame: .zero)
         flightDestinationLabel.textAlignment = .left
-        flightDestinationLabel.textColor = UIColor.appDarkGrayColor
+        flightDestinationLabel.textColor = UIColor.appDarkBlueColor
         flightDestinationLabel.font = UIFont.appCellTimeAndStatusFont
         contentView.addSubview(flightDestinationLabel)
         
         //numberLabel
         numberLabel = UILabel(frame: .zero)
-        numberLabel.textAlignment = .left
-        numberLabel.textColor = UIColor.appDarkGrayColor
+        numberLabel.textAlignment = .center
+        numberLabel.textColor = UIColor.appDarkBlueColor
         numberLabel.font = UIFont.appCellTimeAndStatusFont
         contentView.addSubview(numberLabel)
+        
+//        if hasTitleImg != nil && hasTitleImg {
+            self.setupComponentsHasTitleImage()
+//        } else {
+//            self.setupComponentsHasNoTitleImage()
+//        }
+    }
+    
+    private func setupComponentsHasTitleImage () {
+        backgoundView.layer.cornerRadius = 0
+        contentView.addSubview(backgoundView)
+        
+        deptTimeheaderLabel = UILabel(frame: .zero)
+        deptTimeheaderLabel.textAlignment = .left
+        deptTimeheaderLabel.textColor = .lightGray
+        deptTimeheaderLabel.text = "Departure Time"
+        deptTimeheaderLabel.font = UIFont.appCellTimeAndStatusFont
+        contentView.addSubview(deptTimeheaderLabel)
+        
+        flightNumberHeaderLabel = UILabel(frame: .zero)
+        flightNumberHeaderLabel.textAlignment = .center
+        flightNumberHeaderLabel.textColor = .lightGray
+        flightNumberHeaderLabel.text = "Flight Number"
+        flightNumberHeaderLabel.font = UIFont.appCellTimeAndStatusFont
+        contentView.addSubview(flightNumberHeaderLabel)
+        
+        destinationHeaderLabel = UILabel(frame: .zero)
+        destinationHeaderLabel.textAlignment = .left
+        destinationHeaderLabel.textColor = .lightGray
+        destinationHeaderLabel.text = "Destination"
+        destinationHeaderLabel.font = UIFont.appCellTimeAndStatusFont
+        contentView.addSubview(destinationHeaderLabel)
+    }
+    
+    private func setupComponentsHasNoTitleImage () {
+        backgoundView.layer.cornerRadius = CGFloat().cellCornerRadius
+        contentView.addSubview(backgoundView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -145,6 +193,53 @@ class ScheduleCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+//        if hasTitleImg {
+            self.setupFrameForHasTitleImage()
+//        } else {
+//            self.setupFrameForHasNoTitleImage()
+//        }
+    }
+    
+    private func setupFrameForHasTitleImage () {
+        backgoundView.frame = CGRect(x: 0, y: 0, width: frame.width, height: CGFloat().cellHeight - 10)
+        
+        let _leftX: CGFloat = 20
+        avatarImageView.frame = CGRect(x: _leftX, y: _leftX, width: frame.width/7, height: frame.width/7)
+        
+        //flightNameLabel
+        let headerLeftX = avatarImageView.frame.width + _leftX
+        let headerTitleWidth = (backgoundView.frame.width - headerLeftX) - (backgoundView.frame.width/3)
+        flightNameLabel.frame = CGRect(x: headerLeftX, y: _leftX + (avatarImageView.frame.height/3), width: headerTitleWidth, height: avatarImageView.frame.height/3)
+        
+        //departureStatusLabel
+        let destinationX = backgoundView.frame.width - (backgoundView.frame.width/4)
+        let destinationW = (backgoundView.frame.width/5)
+        departureStatusLabel.frame = CGRect(x: destinationX, y: _leftX + (avatarImageView.frame.height/3), width: destinationW, height: avatarImageView.frame.height/3)
+        
+        //departureStatusImageView
+        departureStatusImageView.frame = CGRect(x: destinationX + 10, y: _leftX + (avatarImageView.frame.height/3) + ((avatarImageView.frame.height/3) / 3), width: 10, height: 10)
+        
+        //seperatorLine
+        let sepY = _leftX + avatarImageView.frame.height + _leftX
+        seperatorLine.frame = CGRect(x: _leftX, y: sepY, width: backgoundView.frame.width - _leftX , height: 0.5)
+        
+        //departureTimeLabel
+        let deptTimeheaderY = (frame.height - sepY) + (_leftX/2)
+        deptTimeheaderLabel.frame = CGRect(x: _leftX, y: deptTimeheaderY, width: backgoundView.frame.width/3, height: 50)
+        departureTimeLabel.frame = CGRect(x: _leftX, y: deptTimeheaderY + 20 , width: backgoundView.frame.width/3, height: 50)
+        
+        //numberLabel
+        let flightNumberHeaderX = (backgoundView.frame.width / 2)
+        flightNumberHeaderLabel.frame = CGRect(x: flightNumberHeaderX - (flightNumberHeaderX/3), y: deptTimeheaderY, width: backgoundView.frame.width/3, height: 50)
+        numberLabel.frame = CGRect(x: flightNumberHeaderX - (flightNumberHeaderX/3), y: deptTimeheaderY + 20, width: backgoundView.frame.width/3, height: 50)
+        
+        //destinationHeaderLabel
+        destinationHeaderLabel.frame = CGRect(x: destinationX + 10, y: deptTimeheaderY, width: destinationW - 10, height: 50)
+        flightDestinationLabel.frame = CGRect(x: destinationX + 10, y: deptTimeheaderY + 20, width: destinationW - 10, height: 50)
+    }
+    
+    private func setupFrameForHasNoTitleImage () {
         
         backgoundView.frame = CGRect(x: viewPadding, y: viewPadding, width: frame.width - (viewPadding*2), height: frame.height - viewPadding)
         
@@ -179,4 +274,5 @@ class ScheduleCell: UITableViewCell {
         //numberLabel
         numberLabel.frame = CGRect(x: nameX, y: avTitleY + (flightNameLabel.frame.height * 2), width: w, height: avatarImageView.frame.height/3)
     }
+    
 }

@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = self.window else {
             fatalError("Window not found, sorry.")
         }
-        
-        window.rootViewController = UINavigationController.init(rootViewController: vc)
+        window.rootViewController = vc
+//        window.rootViewController = UINavigationController.init(rootViewController: vc)
         window.makeKeyAndVisible()
     }
     

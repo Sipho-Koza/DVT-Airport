@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "green_dot_x.png",
+      "filename" : "or_tambo.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "green_dot_x@2x.png",
       "scale" : "2x"
     },
     {

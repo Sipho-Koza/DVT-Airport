@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Red_dot_x.png",
+      "filename" : "Red_dot_x2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Red_dot_x@2x.png",
       "scale" : "2x"
     },
     {

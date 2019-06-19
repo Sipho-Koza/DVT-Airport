@@ -9,75 +9,62 @@
 import Foundation
 import UIKit
 
-struct scheduleData {
-    
-    var departureTime: String?
-//    var departureStatusImage: UIImage?
-    var departureStatus: String?
-//    var avatar: UIImage?
-    var flightName: String?
-    var flightDestination: String?
-    var number: String?
-}
-
-class ScheduleViewController: UIViewController {
+class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var schedulesModel: [ScheduleCellModel] = []
-    let cellReusableIdentifier = "cell"
+    private var titleView: UIView!
+    private var tableView: UITableView!
+    
+    private var airportNameLabel: UILabel!
+    private var airportPlaceLabel: UILabel!
+    private var ariportImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupUI()
-        
-//        let imageView = UIImageView()
-//        NSLayoutConstraint.activate([
-//            imageView.heightAnchor.constraint(equalToConstant: 70),
-//            imageView.widthAnchor.constraint(equalToConstant: 20)
-//            ])
-//        imageView.backgroundColor = .red
-//
-//        let titleLabel = UILabel()
-//        titleLabel.text = "Custom title"
-//
-//        let hStack = UIStackView(arrangedSubviews: [imageView, titleLabel])
-//        hStack.spacing = 5
-//        hStack.alignment = .center
-//
-//        navigationItem.titleView = hStack
-        
-        
-        
-//        self.setupTableView()
         self.view.backgroundColor = UIColor.lightGray
         
-        let sh = NSMutableArray()
+        self.setupUI()
+        self.setupTableView()
         
-        sh.add(scheduleData(departureTime: "06:05", departureStatus: "Boarding", flightName: "SOUTH AFRICAN AIRWAYS", flightDestination: "Cape Town", number: "SA303"))
-        sh.add(scheduleData(departureTime: "05:09", departureStatus: "Departed", flightName: "SOUTH AFRICAN AIRWAYS", flightDestination: "Cape Town", number: "SA303"))
-        sh.add(scheduleData(departureTime: "07:34", departureStatus: "Boarding", flightName: "SOUTH AFRICAN AIRWAYS", flightDestination: "Cape Town", number: "SA303"))
+        let hasImage: Bool = true
+        var avatar = UIImage()
+        avatar = UIImage(named: "Plane_x2")!
         
+        var departureStatusImage = UIImage()
+        departureStatusImage = UIImage(named: "green_dot_x2")!
         
-        for item in sh {
-            if let d = item as? scheduleData {
+        if hasImage {
+            avatar = UIImage(named: "Plane_x1")!
+            departureStatusImage = UIImage(named: "green_dot_x1")!
+        }
+        
+        let scheduleArray = NSMutableArray()
+        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Boarding", avatar: avatar, flightName: "SOUTH AFRICAN AIRWAYS", flightDestination: "Cape Town", flightNumber: "SA303"))
+        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Boarding", avatar: avatar, flightName: "BRITISH AIRWAYS", flightDestination: "Kempton Park", flightNumber: "SA303"))
+        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Departed", avatar: avatar, flightName: "MANGO", flightDestination: "Bundu Inn", flightNumber: "SA303"))
+        
+        for item in scheduleArray {
+            if let d = item as? ScheduleDataModel {
                 
-                let avatar = UIImage(named: "Plane_x")
-                let departureStatusImage = UIImage(named: "green_dot_x")
-                
-                schedulesModel.append(ScheduleCellModel(departureTime: d.departureTime!, departureStatusImage: departureStatusImage!, departureStatus: d.departureStatus!, avatar: avatar!, flightName: d.flightName!, flightDestination: d.flightDestination!, number: d.number!))
+                schedulesModel.append(ScheduleCellModel(departureTime: d.departureTime!, departureStatusImage: departureStatusImage, departureStatus: d.departureStatus!, avatar: avatar, flightName: d.flightName!, flightDestination: d.flightDestination!, flightNumber: d.flightNumber!, hasTitleImage: hasImage))
             }
         }
+        self.tableView.reloadData()
     }
     
-//    private func setupTableView () {
-//
-//        self.tableView = UITableView(frame: self.view.bounds)
-//        self.tableView.delegate = self
-//        self.tableView.dataSource = self
-//        self.tableView.register(ScheduleCell.self, forCellReuseIdentifier: NSStringFromClass(ScheduleCell.self))
-//        self.tableView.separatorStyle = .none
-//        self.tableView.backgroundColor = UIColor.groupTableViewBackground
-//    }
+    private func setupTableView () {
+
+        let titleViewHeight: CGFloat = self.viewFrame.height/4
+        let tableViewH: CGFloat = self.viewFrame.height - titleViewHeight
+        self.tableView = UITableView(frame: CGRect(x: 0, y: titleViewHeight, width: self.viewFrame.width, height: tableViewH))
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(ScheduleCell.self, forCellReuseIdentifier: NSStringFromClass(ScheduleCell.self))
+        self.tableView.separatorStyle = .none
+        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        self.view.addSubview(self.tableView)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -85,39 +72,66 @@ class ScheduleViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+    }
+  
+    private func setupUI() {
         
-//        self.setupUI()
+        let titleViewHeight: CGFloat = self.viewFrame.height/4
+        self.titleView = UIView(frame: CGRect(x: 0, y: 0, width: self.viewFrame.width, height: titleViewHeight))
+        self.titleView.backgroundColor = UIColor.yellow
+        self.view.addSubview(self.titleView)
+        
+        self.ariportImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.viewFrame.width, height: titleViewHeight))
+        self.ariportImageView.image = UIImage(named: "or_tambo")
+        self.view.addSubview(self.ariportImageView)
+        
+        let headerViewFrame = self.titleView.frame
+        
+        self.airportPlaceLabel = UILabel(frame: CGRect(x: 20, y: headerViewFrame.height - (headerViewFrame.height/3), width: headerViewFrame.width - 40, height: 40))
+        self.airportPlaceLabel.text = "Airport Kempton Park"
+        self.airportPlaceLabel.font = UIFont.appCellTimeAndStatusFont
+        self.airportPlaceLabel.textColor = UIColor.white
+        self.view.addSubview(self.airportPlaceLabel)
+        
+        self.airportNameLabel = UILabel(frame: CGRect(x: 20, y: headerViewFrame.height - (headerViewFrame.height/2), width: headerViewFrame.width - 40, height: 40))
+        self.airportNameLabel.text = "O.R Tambo International"
+        self.airportNameLabel.textColor = UIColor.white
+        self.view.addSubview(self.airportNameLabel)
+        
+        
+        
+//        self.title = "Schedule"
+        
+//        let barHeight: CGFloat = self.viewFrame.height/6
+//        self.navBar.frame = CGRect(x: 0, y: 0, width: self.viewFrame.width, height: barHeight)
+//        self.navBar.backgroundColor = UIColor.yellow
+//        self.view.addSubview(self.navBar)
     }
     
-    private func setupUI() {
-        self.navigationItem.title = "Schedule"
-        
-        let height: CGFloat = self.viewFrame.height / 3
-        let width = self.navigationController?.navigationBar.bounds.width
-        
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: width!, height: height))
-        self.navigationController?.navigationItem.titleView?.frame = CGRect(x: 0, y: 0, width: width!, height: height)
+    //tableView
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
 
-    //tableView
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return schedulesModel.count
-//    }
-//
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return CGFloat().cellHeight
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = self.tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(ScheduleCell.self), for: indexPath) as! ScheduleCell
-//
-//        cell.scheduleCell = self.schedulesModel[indexPath.row]
-//
-//        return cell
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return schedulesModel.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat().cellHeight
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(ScheduleCell.self), for: indexPath) as! ScheduleCell
+
+        cell.scheduleCell = self.schedulesModel[indexPath.row]
+
+        return cell
+    }
 }
 
+extension UINavigationBar {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 51)
+    }
+}
