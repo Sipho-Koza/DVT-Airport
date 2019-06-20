@@ -11,7 +11,7 @@ import UIKit
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var schedulesModel: [ScheduleCellModel] = []
+    private var retrievedSchedule = [ScheduleDataModel]()
     private var titleView: UIView!
     private var tableView: UITableView!
     
@@ -19,38 +19,62 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     private var airportPlaceLabel: UILabel!
     private var ariportImageView: UIImageView!
     
+    var airportName = String()
+    var airportIataCode = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.lightGray
+        self.fetchSchedule()
         
-        self.setupUI()
-        self.setupTableView()
+//        self.setupUI()
+//        self.setupTableView()
+//
+//        let hasImage: Bool = true
+//        var avatar = UIImage()
+//        avatar = UIImage(named: "Plane_x2")!
+//
+//        var departureStatusImage = UIImage()
+//        departureStatusImage = UIImage(named: "green_dot_x2")!
+//
+//        if hasImage {
+//            avatar = UIImage(named: "Plane_x1")!
+//            departureStatusImage = UIImage(named: "green_dot_x1")!
+//        }
+//
+//        let scheduleArray = NSMutableArray()
+//        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Boarding", avatar: avatar, flightName: "SOUTH AFRICAN AIRWAYS", flightDestination: "Cape Town", flightNumber: "SA303"))
+//        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Boarding", avatar: avatar, flightName: "BRITISH AIRWAYS", flightDestination: "Kempton Park", flightNumber: "SA303"))
+//        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Departed", avatar: avatar, flightName: "MANGO", flightDestination: "Bundu Inn", flightNumber: "SA303"))
         
-        let hasImage: Bool = true
-        var avatar = UIImage()
-        avatar = UIImage(named: "Plane_x2")!
+//        for item in scheduleArray {
+//            if let d = item as? ScheduleDataModel {
+//
+////                schedulesModel.append(ScheduleCellModel(departureTime: d.departureTime!, departureStatusImage: departureStatusImage, departureStatus: d.departureStatus!, avatar: avatar, flightName: d.flightName!, flightDestination: d.flightDestination!, flightNumber: d.flightNumber!, hasTitleImage: hasImage))
+//            }
+//        }
+//        self.tableView.reloadData()
+    }
+    
+    private func fetchSchedule () {
         
-        var departureStatusImage = UIImage()
-        departureStatusImage = UIImage(named: "green_dot_x2")!
-        
-        if hasImage {
-            avatar = UIImage(named: "Plane_x1")!
-            departureStatusImage = UIImage(named: "green_dot_x1")!
-        }
-        
-        let scheduleArray = NSMutableArray()
-        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Boarding", avatar: avatar, flightName: "SOUTH AFRICAN AIRWAYS", flightDestination: "Cape Town", flightNumber: "SA303"))
-        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Boarding", avatar: avatar, flightName: "BRITISH AIRWAYS", flightDestination: "Kempton Park", flightNumber: "SA303"))
-        scheduleArray.add(ScheduleDataModel(departureTime: "06:05", departureStatusImage: departureStatusImage, departureStatus: "Departed", avatar: avatar, flightName: "MANGO", flightDestination: "Bundu Inn", flightNumber: "SA303"))
-        
-        for item in scheduleArray {
-            if let d = item as? ScheduleDataModel {
+        if let IataCode = airportIataCode as String? {
+            Webservice().load(resource: ScheduleDataModel.fetch(iataCode: IataCode)) { result in
                 
-                schedulesModel.append(ScheduleCellModel(departureTime: d.departureTime!, departureStatusImage: departureStatusImage, departureStatus: d.departureStatus!, avatar: avatar, flightName: d.flightName!, flightDestination: d.flightDestination!, flightNumber: d.flightNumber!, hasTitleImage: hasImage))
+                switch result {
+                case .failure(let error):
+                    UIAlertController.buildDismissAlertController(title: "Error", message: error.errorMessage)
+                case .success(let timeTable):
+                    DispatchQueue.main.async {
+                        self.retrievedSchedule = timeTable
+                        
+                        print(self.retrievedSchedule[0].status!)
+                        print(self.retrievedSchedule[0].type!)
+                    }
+                }
             }
         }
-        self.tableView.reloadData()
     }
     
     private func setupTableView () {
@@ -94,7 +118,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.addSubview(self.airportPlaceLabel)
         
         self.airportNameLabel = UILabel(frame: CGRect(x: 20, y: headerViewFrame.height - (headerViewFrame.height/2), width: headerViewFrame.width - 40, height: 40))
-        self.airportNameLabel.text = "O.R Tambo International"
+        self.airportNameLabel.text = airportName
         self.airportNameLabel.textColor = UIColor.white
         self.view.addSubview(self.airportNameLabel)
         
@@ -114,7 +138,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schedulesModel.count
+        return retrievedSchedule.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -124,7 +148,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(ScheduleCell.self), for: indexPath) as! ScheduleCell
 
-        cell.scheduleCell = self.schedulesModel[indexPath.row]
+//        cell.scheduleCell = self.retrievedSchedule[indexPath.row]
 
         return cell
     }

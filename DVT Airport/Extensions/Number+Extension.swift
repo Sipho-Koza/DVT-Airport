@@ -18,5 +18,12 @@ extension CGFloat {
     var cellCornerRadius: CGFloat{
         return 20.0
     }
-    
+}
+
+extension Double {
+    //round the double to decimal place value
+    func rounded(toPlaces places: Int) -> Double {
+        let div = pow(10.0, Double(places))
+        return (self*div).rounded()/div
+    }
 }

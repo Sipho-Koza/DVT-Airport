@@ -21,6 +21,16 @@
 		8E02386B22B9715200125A2B /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02386A22B9715200125A2B /* Font+Extension.swift */; };
 		8E98562522BA2482001219A4 /* ScheduleCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98562422BA2482001219A4 /* ScheduleCellModel.swift */; };
 		8E98562822BA2526001219A4 /* ScheduleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98562722BA2526001219A4 /* ScheduleDataModel.swift */; };
+		8E98562B22BA89F5001219A4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E98562A22BA89F5001219A4 /* MapKit.framework */; };
+		8E98562D22BA9376001219A4 /* AirportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98562C22BA9376001219A4 /* AirportModel.swift */; };
+		8E98563022BB84EC001219A4 /* ClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98562F22BB84EC001219A4 /* ClientAPI.swift */; };
+		8E98563222BB8B97001219A4 /* AlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563122BB8B97001219A4 /* AlertController+Extension.swift */; };
+		8E98563422BB8BFB001219A4 /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563322BB8BFB001219A4 /* UIWindow+Extension.swift */; };
+		8E98563622BB9039001219A4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563522BB9039001219A4 /* Reachability.swift */; };
+		8E98563922BBB458001219A4 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563822BBB458001219A4 /* Webservice.swift */; };
+		8E98563C22BBB7D6001219A4 /* AirportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563B22BBB7D6001219A4 /* AirportViewModel.swift */; };
+		8E98563E22BBBAEF001219A4 /* LoadActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */; };
+		8E98564022BBEE79001219A4 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563F22BBEE79001219A4 /* ScheduleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +62,16 @@
 		8E02386A22B9715200125A2B /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		8E98562422BA2482001219A4 /* ScheduleCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellModel.swift; sourceTree = "<group>"; };
 		8E98562722BA2526001219A4 /* ScheduleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataModel.swift; sourceTree = "<group>"; };
+		8E98562A22BA89F5001219A4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8E98562C22BA9376001219A4 /* AirportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportModel.swift; sourceTree = "<group>"; };
+		8E98562F22BB84EC001219A4 /* ClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAPI.swift; sourceTree = "<group>"; };
+		8E98563122BB8B97001219A4 /* AlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertController+Extension.swift"; sourceTree = "<group>"; };
+		8E98563322BB8BFB001219A4 /* UIWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
+		8E98563522BB9039001219A4 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8E98563822BBB458001219A4 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		8E98563B22BBB7D6001219A4 /* AirportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportViewModel.swift; sourceTree = "<group>"; };
+		8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActivityIndicator.swift; sourceTree = "<group>"; };
+		8E98563F22BBEE79001219A4 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E98562B22BA89F5001219A4 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +99,7 @@
 				8E02383522B917A900125A2B /* DVT Airport */,
 				8E02384D22B917AA00125A2B /* DVT AirportTests */,
 				8E02383422B917A900125A2B /* Products */,
+				8E98562922BA89F5001219A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +115,9 @@
 		8E02383522B917A900125A2B /* DVT Airport */ = {
 			isa = PBXGroup;
 			children = (
+				8E98563A22BBB762001219A4 /* ViewModel */,
+				8E98563722BBB3D7001219A4 /* Webservice */,
+				8E98562E22BB84A3001219A4 /* API */,
 				8E98562622BA2515001219A4 /* Models */,
 				8E02386322B9368500125A2B /* CustomCells */,
 				8E02386022B92DA500125A2B /* Extensions */,
@@ -147,6 +172,8 @@
 				8E02386622B947B400125A2B /* Number+Extension.swift */,
 				8E02386822B9713600125A2B /* Color+Extension.swift */,
 				8E02386A22B9715200125A2B /* Font+Extension.swift */,
+				8E98563122BB8B97001219A4 /* AlertController+Extension.swift */,
+				8E98563322BB8BFB001219A4 /* UIWindow+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -164,8 +191,44 @@
 			isa = PBXGroup;
 			children = (
 				8E98562722BA2526001219A4 /* ScheduleDataModel.swift */,
+				8E98562C22BA9376001219A4 /* AirportModel.swift */,
+				8E98563522BB9039001219A4 /* Reachability.swift */,
+				8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8E98562922BA89F5001219A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E98562A22BA89F5001219A4 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E98562E22BB84A3001219A4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8E98562F22BB84EC001219A4 /* ClientAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8E98563722BBB3D7001219A4 /* Webservice */ = {
+			isa = PBXGroup;
+			children = (
+				8E98563822BBB458001219A4 /* Webservice.swift */,
+			);
+			path = Webservice;
+			sourceTree = "<group>";
+		};
+		8E98563A22BBB762001219A4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8E98563B22BBB7D6001219A4 /* AirportViewModel.swift */,
+				8E98563F22BBEE79001219A4 /* ScheduleViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +281,11 @@
 				TargetAttributes = {
 					8E02383222B917A900125A2B = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8E02384922B917AA00125A2B = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -268,17 +336,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E98563222BB8B97001219A4 /* AlertController+Extension.swift in Sources */,
 				8E98562522BA2482001219A4 /* ScheduleCellModel.swift in Sources */,
 				8E98562822BA2526001219A4 /* ScheduleDataModel.swift in Sources */,
+				8E98564022BBEE79001219A4 /* ScheduleViewModel.swift in Sources */,
 				8E02383F22B917A900125A2B /* DVT_Airport.xcdatamodeld in Sources */,
+				8E98562D22BA9376001219A4 /* AirportModel.swift in Sources */,
+				8E98563E22BBBAEF001219A4 /* LoadActivityIndicator.swift in Sources */,
 				8E02385D22B919BB00125A2B /* AirportsViewController.swift in Sources */,
 				8E02383722B917A900125A2B /* AppDelegate.swift in Sources */,
 				8E02386222B92DBD00125A2B /* ViewController+Extension.swift in Sources */,
 				8E02386522B936A200125A2B /* ScheduleCell.swift in Sources */,
 				8E02386B22B9715200125A2B /* Font+Extension.swift in Sources */,
 				8E02385F22B91A1100125A2B /* ScheduleViewController.swift in Sources */,
+				8E98563422BB8BFB001219A4 /* UIWindow+Extension.swift in Sources */,
 				8E02386722B947B400125A2B /* Number+Extension.swift in Sources */,
+				8E98563022BB84EC001219A4 /* ClientAPI.swift in Sources */,
+				8E98563C22BBB7D6001219A4 /* AirportViewModel.swift in Sources */,
+				8E98563622BB9039001219A4 /* Reachability.swift in Sources */,
 				8E02386922B9713600125A2B /* Color+Extension.swift in Sources */,
+				8E98563922BBB458001219A4 /* Webservice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

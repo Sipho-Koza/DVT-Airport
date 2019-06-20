@@ -9,15 +9,24 @@
 import Foundation
 import UIKit
 
-struct ScheduleDataModel {
+enum Status {
+    case landed
+    case active
+    case scheduled
+}
+
+struct ScheduleDataModel: Codable {
+
+    var type: String?
+    var status: String?
     
-    var departureTime: String?
-    var departureStatusImage: UIImage?
-    var departureStatus: String?
-    var avatar: UIImage?
-    var flightName: String?
-    var flightDestination: String?
-    var flightNumber: String?
+//    var departureTime: String?
+//    var departureStatusImage: UIImage?
+//    var departureStatus: String?
+//    var avatar: UIImage?
+//    var flightName: String?
+//    var flightDestination: String?
+//    var flightNumber: String?
 }
 
 extension ScheduleCellModel {
