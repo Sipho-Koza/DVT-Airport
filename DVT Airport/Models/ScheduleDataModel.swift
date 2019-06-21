@@ -19,14 +19,46 @@ struct ScheduleDataModel: Codable {
 
     var type: String?
     var status: String?
+    var airlineModel: AirlineModel?
+    var arrivalModel: ArrivalModel?
+    var departureModel: DepartureModel?
+    var flightModel: FlightModel?
     
-//    var departureTime: String?
-//    var departureStatusImage: UIImage?
-//    var departureStatus: String?
-//    var avatar: UIImage?
-//    var flightName: String?
-//    var flightDestination: String?
-//    var flightNumber: String?
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case status
+        case airlineModel = "airline"
+        case arrivalModel = "arrival"
+        case departureModel = "departure"
+        case flightModel = "flight"
+    }
+}
+
+struct AirlineModel: Codable {
+    var iataCode: String?
+    var icaoCode: String?
+    var name: String?
+}
+
+struct ArrivalModel: Codable {
+    var actualTime: String?
+    var baggage: String?
+    var estimatedTime: String?
+    var iataCode: String?
+    var icaoCode: String?
+    var scheduledTime: String?
+}
+
+struct DepartureModel: Codable {
+    var iataCode: String?
+    var icaoCode: String?
+    var scheduledTime: String?
+}
+
+struct FlightModel: Codable {
+    var iataNumber: String?
+    var icaoNumber: String?
+    var number: String?
 }
 
 extension ScheduleCellModel {

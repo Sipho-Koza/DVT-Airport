@@ -21,20 +21,3 @@ extension ScheduleDataModel {
         return resource
     }
 }
-
-
-
-
-//extension AirportModel {
-//    static func fetch (lat: Double, lng:Double) -> Resource<[AirportModel]> {
-//
-//        //        https://aviation-edge.com/v2/public/nearby?key=d1d5ad-cb2daf&lat=-26.147655&lng=28.0518967&distance=100
-//        let urlString = String("\(Client.basePath.rawValue)nearby?key=\(Client.apiKey.rawValue)&lat=\(lat)&lng=\(lng)&distance=100")
-//        guard let url = URL(string: urlString) else {
-//            fatalError("Something is wrong with the airport url")
-//        }
-//
-//        let resource = Resource<[AirportModel]>(url: url)
-//        return resource
-//    }
-//}
