@@ -9,10 +9,25 @@
 import Foundation
 import UIKit
 
-enum Status {
-    case landed
-    case active
-    case scheduled
+enum Status: String {
+    case landed = "landed"
+    case active = "active"
+    case scheduled = "scheduled"
+}
+
+extension Status {
+    var description: String {
+        get {
+            switch self {
+            case .landed:
+                return "Departed"
+            case .active:
+                return "Boarding"
+            case .scheduled:
+                return "Boarding"
+            }
+        }
+    }
 }
 
 struct ScheduleDataModel: Codable {
@@ -61,12 +76,49 @@ struct FlightModel: Codable {
     var number: String?
 }
 
-extension ScheduleCellModel {
+
+//ScheduleCellModel
+class ScheduleCellModel: NSObject {
     
-    func displayAirportSchedule(_ airportSchedule: ScheduleDataModel) {
+    var departureTime: String?
+    var departureStatusImage: UIImage? //???
+    var departureStatus: String?
+    var flightName: String?
+    var flightDestination: String?
+    var flightNumber: String?
+    
+    init (scheduleDataModel: ScheduleDataModel) {
         
+        //time
+        if let scheduleTime = scheduleDataModel.departureModel?.scheduledTime {
+            departureTime = DateUtil.retrieveTimeFromDate(originalStringDate: scheduleTime)
+        }
         
+        //status
+        if let status = scheduleDataModel.status {
+            
+            if status == Status.landed.rawValue {
+                departureStatus = Status.landed.description
+                departureStatusImage = UIImage(named: "Red_dot_x1")
+            } else {
+                departureStatus = Status.scheduled.description
+                departureStatusImage = UIImage(named: "green_dot_x1")
+            }
+        }
         
+        //airlineName
+        if let airLineName = scheduleDataModel.airlineModel?.name {
+            flightName = airLineName.uppercased()
+        }
         
+        //destination
+        if let destinationPlace = scheduleDataModel.arrivalModel?.iataCode {
+            flightDestination = destinationPlace
+        }
+        
+        //flightNumber
+        if let flightNum = scheduleDataModel.flightModel?.number {
+            flightNumber = flightNum
+        }
     }
 }

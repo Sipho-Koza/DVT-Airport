@@ -25,16 +25,20 @@ class AirportsViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
+        self.setupMapView()
+        self.setupLocationManager()
+    }
+    
+    private func setupLocationManager() {
+        
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.startUpdatingLocation()
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+
+    private func setupMapView () {
         
         self.mapView = MKMapView()
         self.mapView.frame = CGRect(x: 0, y: 0, width: self.viewFrame.width, height: self.viewFrame.height)
@@ -44,6 +48,16 @@ class AirportsViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.mapView.delegate = self
         self.mapView.center = self.view.center
         self.view.addSubview(self.mapView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if Reachability.isConnectedToNetwork() {
+            self.locationManager.startUpdatingLocation()
+        } else {
+            UIAlertController.buildNetworkErrorAlertController()
+        }
     }
     
     @objc func takeMeToDestination() {

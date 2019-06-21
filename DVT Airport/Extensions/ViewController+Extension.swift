@@ -14,6 +14,4 @@ extension UIViewController {
     var viewFrame: CGRect {
         return UIScreen.main.bounds
     }
-    
-    
 }

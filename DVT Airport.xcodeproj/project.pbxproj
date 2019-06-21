@@ -31,6 +31,7 @@
 		8E98563C22BBB7D6001219A4 /* AirportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563B22BBB7D6001219A4 /* AirportViewModel.swift */; };
 		8E98563E22BBBAEF001219A4 /* LoadActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */; };
 		8E98564022BBEE79001219A4 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98563F22BBEE79001219A4 /* ScheduleViewModel.swift */; };
+		8E98564222BCF649001219A4 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E98564122BCF649001219A4 /* DateUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		8E98563B22BBB7D6001219A4 /* AirportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportViewModel.swift; sourceTree = "<group>"; };
 		8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActivityIndicator.swift; sourceTree = "<group>"; };
 		8E98563F22BBEE79001219A4 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		8E98564122BCF649001219A4 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		8E02383522B917A900125A2B /* DVT Airport */ = {
 			isa = PBXGroup;
 			children = (
+				8E98564322BCF65F001219A4 /* Util */,
 				8E98563A22BBB762001219A4 /* ViewModel */,
 				8E98563722BBB3D7001219A4 /* Webservice */,
 				8E98562E22BB84A3001219A4 /* API */,
@@ -193,7 +196,6 @@
 				8E98562722BA2526001219A4 /* ScheduleDataModel.swift */,
 				8E98562C22BA9376001219A4 /* AirportModel.swift */,
 				8E98563522BB9039001219A4 /* Reachability.swift */,
-				8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +231,15 @@
 				8E98563F22BBEE79001219A4 /* ScheduleViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8E98564322BCF65F001219A4 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8E98564122BCF649001219A4 /* DateUtil.swift */,
+				8E98563D22BBBAEF001219A4 /* LoadActivityIndicator.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +358,7 @@
 				8E02383722B917A900125A2B /* AppDelegate.swift in Sources */,
 				8E02386222B92DBD00125A2B /* ViewController+Extension.swift in Sources */,
 				8E02386522B936A200125A2B /* ScheduleCell.swift in Sources */,
+				8E98564222BCF649001219A4 /* DateUtil.swift in Sources */,
 				8E02386B22B9715200125A2B /* Font+Extension.swift in Sources */,
 				8E02385F22B91A1100125A2B /* ScheduleViewController.swift in Sources */,
 				8E98563422BB8BFB001219A4 /* UIWindow+Extension.swift in Sources */,

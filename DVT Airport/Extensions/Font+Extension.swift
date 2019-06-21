@@ -20,5 +20,9 @@ extension UIFont {
         return UIFont.systemFont(ofSize: 13, weight: .semibold)
     }
     
+    //
+    public class var appScheduleTitleFont: UIFont {
+        return UIFont.systemFont(ofSize: 17, weight: .bold)
+    }
     
 }

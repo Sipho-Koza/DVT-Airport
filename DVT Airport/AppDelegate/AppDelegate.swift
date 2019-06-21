@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let airportsVC = AirportsViewController()
+//        let airportsVC = ScheduleViewController()
         self.setupInitialViewController(vc: airportsVC)
         
         return true

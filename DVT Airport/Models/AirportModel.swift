@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 struct AirportModel: Codable {
-    
     let airportId: String?
     let nameAirport: String?
     let codeIataAirport: String?
@@ -25,7 +24,6 @@ struct AirportModel: Codable {
     let codeIso2Country: String?
     let codeIataCity: String?
     let distance: String?
-    
 }
 
 
